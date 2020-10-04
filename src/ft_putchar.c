@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/04 15:46:18 by clorin            #+#    #+#             */
-/*   Updated: 2020/10/04 15:49:15 by clorin           ###   ########.fr       */
+/*   Created: 2020/09/15 14:42:09 by clorin            #+#    #+#             */
+/*   Updated: 2020/09/15 14:42:11 by clorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-
-int		ft_printf(const char *format, ...);
-void		ft_putchar(const char);
-
-#endif
+void		ft_putchar(char c)
+{
+	write(1, &c, 1);
+}

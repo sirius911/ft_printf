@@ -18,7 +18,8 @@ CC			= gcc
 
 CFLAGS		= -Wall -Wextra -Werror -I includes/
 
-SRCS		= ft_printf.c
+SRCS		= ft_printf.c \
+		src/ft_putchar.c
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -50,4 +51,8 @@ fclean:		clean
 			@echo "\033[0mSuppression "${NAME}" ... \033[32mok\033[0m"
 			@rm -f test
 			
-re:			fclean	all
+re:		fclean	all
+
+test:		libftprintf.a 
+		${CC} ${HEADER} -L. -O test.c -o test -lftprintf
+
