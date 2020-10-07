@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/04 15:45:05 by clorin            #+#    #+#             */
-/*   Updated: 2020/10/04 15:45:12 by clorin           ###   ########.fr       */
+/*   Created: 2020/09/21 10:05:07 by clorin            #+#    #+#             */
+/*   Updated: 2020/09/21 10:09:15 by clorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "libft.h"
 
-int     ft_printf(const char *format, ...)
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    va_list     param;
-    size_t      written_char;
-    
-    va_start(param, format);
-    written_char = 0;
-    while (*format)
-    {
-        if (*format != '%')
-        {
-            ft_putchar(*format);
-            written_char++;
-        }
-        format++;
-    }
-    va_end(param);
-    return (written_char);
+	unsigned int	i;
+	char			*new;
+
+	if (!s)
+		return (NULL);
+	new = ft_strnew(ft_strlen(s));
+	if (!new)
+		return (NULL);
+	i = 0;
+	if (f)
+	{
+		while (s[i])
+		{
+			new[i] = (*f)(i, s[i]);
+			i++;
+		}
+	}
+	return (new);
 }

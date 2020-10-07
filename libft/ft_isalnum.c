@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/15 14:42:09 by clorin            #+#    #+#             */
-/*   Updated: 2020/09/15 14:42:11 by clorin           ###   ########.fr       */
+/*   Created: 2020/09/18 11:50:14 by clorin            #+#    #+#             */
+/*   Updated: 2020/09/18 11:52:09 by clorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-void		ft_putchar(char c)
+int		ft_isalnum(int ch)
 {
-	write(1, &c, 1);
+	return (ft_isalpha(ch) || ft_isdigit(ch));
 }

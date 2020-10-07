@@ -16,8 +16,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include "../libft/libft.h"
 
-int		ft_printf(const char *format, ...);
-void		ft_putchar(const char);
+typedef struct	s_flags
+{
+	int			zero;
+	int			width;
+	int			left;
+	int			precision;
+
+}				t_flags;
+
+int				ft_printf(const char *format, ...);
+int				ft_set_flags(t_flags *flags, const char *format, va_list param);
+int				ft_print_arg(const char *format, t_flags *flags, va_list param);
+int				ft_putc(t_flags *flags, va_list param);
+int				ft_puts(t_flags *flags, va_list param);
 
 #endif

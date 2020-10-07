@@ -10,34 +10,41 @@
 #                                                                              #
 # **************************************************************************** #
 
-.phony: all clean fclean re
+.PHONY: all clean fclean re
 
-NAME		= libftprintf.a
+NAME = libftprintf.a
+CC = gcc
+CC_FLAGS = -Wall -Wextra -Werror
+PATH_OPRINTF = ./src/
+PATH_SPRINTF = ./src/
+PATH_IPRINTF = ./src/
+PATH_OLIBFT = ./libft/
+PATH_SLIBFT = ./libft/
+PATH_ILIBFT = ./libft/
+FILESLIBFT = ft_strlen ft_putchar ft_putchar_fd ft_putstr ft_putstr_fd ft_putnchar ft_isdigit ft_strchr ft_isspace \
+			ft_atoi ft_putnbr ft_putnbr_fd
+FILESPRINTF = ft_printf ft_flags ft_conversion ft_putc ft_puts
 
-CC			= gcc
+SLIBFT = $(addprefix $(PATH_SLIBFT), $(addsuffix .c, $(FILESLIBFT)))
+OLIBFT = $(addprefix $(PATH_OLIBFT), $(addsuffix .o, $(FILESLIBFT:.c=.o)))
+ILIBFT = $(addprefix $(PATH_ILIBFT), libft.h)
+SPRINTF = $(addprefix $(PATH_SPRINTF), $(addsuffix .c, $(FILESPRINTF)))
+OPRINTF = $(addprefix $(PATH_OPRINTF), $(addsuffix .o, $(FILESPRINTF:.c=.o)))
+IPRINTF = $(addprefix $(PATH_IPRINTF), ft_printf.h)
 
-CFLAGS		= -Wall -Wextra -Werror -I includes/
+all : $(NAME)
 
-SRCS		= ft_printf.c \
-		src/ft_putchar.c
+$(NAME) : $(OLIBFT) $(OPRINTF)
+	ar rcs $(NAME) $(OPRINTF) $(OLIBFT)
 
-OBJS		= ${SRCS:.c=.o}
+$(PATH_OLIBFT)%.o : $(PATH_SLIBFT)%.c $(ILIBFT)
+	@$(CC) $(CC_FLAGS) -o $@ -c $< -I $(PATH_ILIBFT)
 
-.c.o:
-			@${CC} ${CFLAGS} ${HEADER} -c $< -o ${<:.c=.o}
-			@echo "compilation : "$< "\033[32mok\033[0m"	
-
-all:		${NAME}
-
-$(NAME):	${OBJS}
-			@ar rc ${NAME} ${OBJS}
-			@echo "\033[0m\nCréation de la librairie ... \033[32mok\033[0m"
-			@ranlib ${NAME}
-			@echo "Optimisation ... \033[32mok\033[0m"
-			@echo "\033[1;31;40m -------------- TERMINÉ ---------------\033[0m"
+$(PATH_OPRINTF)%.o : $(PATH_SPRINTF)%.c $(IPRINTF)
+	@$(CC) $(CC_FLAGS) -o $@ -c $< -I $(PATH_IPRINTF)
 
 clean:	
-			@rm -f ${OBJS}
+			@rm -f $(OLIBFT) $(OPRINTF)
 			@echo "\n\033[32m"
 			@echo " ██████ ██      ███████  █████  ███    ██"
 			@echo "██      ██      ██      ██   ██ ████   ██"
@@ -53,6 +60,6 @@ fclean:		clean
 			
 re:		fclean	all
 
-test:		libftprintf.a 
-		${CC} ${HEADER} -L. -O test.c -o test -lftprintf
+test:	test.c	libftprintf.a 
+		${CC} ${HEADER} -O test.c -o test  -L. -lftprintf 
 
