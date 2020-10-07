@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-static void			flags_init(t_flags *flags)
+static void	flags_init(t_flags *flags)
 {
 	flags->zero = 0;
 	flags->left = 0;
@@ -20,10 +20,10 @@ static void			flags_init(t_flags *flags)
 	flags->width = 0;
 }
 
-static int			padding(t_flags *flags, const char *format, va_list param)
+static int	padding(t_flags *flags, const char *format, va_list param)
 {
-	int				i;
-	int				arg_width;
+	int		i;
+	int		arg_width;
 
 	i = 0;
 	arg_width = 0;
@@ -46,10 +46,10 @@ static int			padding(t_flags *flags, const char *format, va_list param)
 	return (i);
 }
 
-static int			precision(t_flags *flags, const char *format, va_list param)
+static int	precision(t_flags *flags, const char *format, va_list param)
 {
-	int				i;
-	int				arg_precis;
+	int		i;
+	int		arg_precis;
 
 	i = 1;
 	arg_precis = 0;
@@ -75,9 +75,9 @@ static int			precision(t_flags *flags, const char *format, va_list param)
 	return (i);
 }
 
-int					ft_set_flags(t_flags *flags, const char *format, va_list param)
+int			ft_set_flags(t_flags *flags, const char *format, va_list param)
 {
-	int				i;
+	int		i;
 
 	i = 1;
 	flags_init(flags);
@@ -97,7 +97,7 @@ int					ft_set_flags(t_flags *flags, const char *format, va_list param)
 		else if (ft_isdigit(format[i]) || format[i] == '*')
 			i += padding(flags, &(format[i]), param);
 		else if (format[i] == '.')
-		 	i += precision(flags, &(format[i]), param);
-	} 
+			i += precision(flags, &(format[i]), param);
+	}
 	return (i);
 }
