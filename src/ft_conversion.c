@@ -23,5 +23,7 @@ int		ft_print_arg(const char *format, t_flags *flags, va_list param)
 		i += ft_putc(flags, param);
 	else if (*format == 's')
 		i += ft_puts(flags, param);
+    else if (*format == 'd' || *format == 'i')
+        i += ft_putdi(flags, param);
 	return (i);
 }
