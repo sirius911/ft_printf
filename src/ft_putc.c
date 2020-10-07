@@ -26,9 +26,9 @@ int		ft_putc(t_flags *flags, va_list param)
 	}
 	else if (flags->left == 0)
 	{
-		if (flags->zero == 1)
-			i += ft_putnchar('0', flags->width - 1);
-		else
+		// if (flags->zero == 1)
+		// 	i += ft_putnchar('0', flags->width - 1);
+		// else
 			i += ft_putnchar(' ', flags->width - 1);
 		write(1, &c, 1);
 	}

@@ -59,10 +59,10 @@ int			ft_puts(t_flags *flags, va_list param)
 	}
 	else
 	{
-		if (flags->zero == 0)
+		// if (flags->zero == 0)
 			i += ft_putnchar(' ', flags->width - len);
-		else
-			i += ft_putnchar('0', flags->width - len);
+		// else
+		// 	i += ft_putnchar('0', flags->width - len);
 		i += ft_print_s(str, flags, len);
 	}
 	return (i);
