@@ -25,5 +25,11 @@ int		ft_print_arg(const char *format, t_flags *flags, va_list param)
 		i += ft_puts(flags, param);
     else if (*format == 'd' || *format == 'i')
         i += ft_putdi(flags, param);
+    else if (*format == 'x')
+    	i += ft_putx(flags, param, "0123456789abcdef");
+    else if (*format == 'X')
+    	i += ft_putx(flags, param, "0123456789ABCDEF");
+    else if (*format == 'b')
+    	i += ft_putx(flags, param, "01");
 	return (i);
 }

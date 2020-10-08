@@ -33,5 +33,6 @@ int				ft_print_arg(const char *format, t_flags *flags, va_list param);
 int				ft_putc(t_flags *flags, va_list param);
 int				ft_puts(t_flags *flags, va_list param);
 int				ft_putdi(t_flags *flags, va_list param);
+int				ft_putx(t_flags *flags, va_list param, char *base);
 
 #endif
