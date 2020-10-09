@@ -32,7 +32,7 @@ static int			len_nbr(int nbr)
 		nb = -nbr;
 	else
 		nb = nbr;
-	while (nb > 10)
+	while (nb >= 10)
 	{
 		nb = nb / 10;
 		i++;
