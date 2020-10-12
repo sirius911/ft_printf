@@ -11,13 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>      //effacer
-
-void			print_flags(t_flags *flags) //effacer
-{
-	printf("Flags\n \tzero = %d\n\tleft = %d\n\tprecision = %d\n\twidth = %d\n", flags->zero,
-	flags->left, flags->precision, flags->width);
-}
 
 int				ft_printf(const char *format, ...)
 {

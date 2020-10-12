@@ -20,7 +20,7 @@ int			ft_len_nbr_base(long nbr, char *base)
 	i = 0;
 	if (nbr == 0)
 		return (1);
-	if(nbr < 0)
+	if (nbr < 0)
 		nbr = -nbr;
 	len_base = ft_strlen(base);
 	if (len_base == 0)

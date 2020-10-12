@@ -23,19 +23,19 @@ int		ft_print_arg(const char *format, t_flags *flags, va_list param)
 		i += ft_putc(flags, param);
 	else if (*format == 's')
 		i += ft_puts(flags, param);
-    else if (*format == 'd' || *format == 'i')
-        i += ft_putdi(flags, param);
-    else if (*format == 'u')
-    	i += ft_putu(flags, param);
-    else if (*format == 'x')
-    	i += ft_putx(flags, param, "0123456789abcdef");
-    else if (*format == 'X')
-    	i += ft_putx(flags, param, "0123456789ABCDEF");
-    else if (*format == 'b')
-    	i += ft_putx(flags, param, "01");
-    else if (*format == 'o')
-    	i += ft_putx(flags, param, "01234567");
-    else if (*format == 'p')
-    	i += ft_putp(flags, param);
+	else if (*format == 'd' || *format == 'i')
+		i += ft_putdi(flags, param);
+	else if (*format == 'u')
+		i += ft_putu(flags, param);
+	else if (*format == 'x')
+		i += ft_putx(flags, param, "0123456789abcdef");
+	else if (*format == 'X')
+		i += ft_putx(flags, param, "0123456789ABCDEF");
+	else if (*format == 'b')
+		i += ft_putx(flags, param, "01");
+	else if (*format == 'o')
+		i += ft_putx(flags, param, "01234567");
+	else if (*format == 'p')
+		i += ft_putp(flags, param);
 	return (i);
 }

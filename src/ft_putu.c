@@ -25,7 +25,7 @@ static int			len_nbr(unsigned int nbr)
 	return (i);
 }
 
-static int			ft_print_u(unsigned int  nbr)
+static int			ft_print_u(unsigned int nbr)
 {
 	if (nbr >= 10)
 	{
@@ -62,4 +62,3 @@ int					ft_putu(t_flags *flags, va_list param)
 		i += ft_putnchar(' ', flags->width - len);
 	return (i);
 }
-

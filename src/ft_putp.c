@@ -30,12 +30,12 @@ static int		ft_zero(int left, int width)
 	return (i);
 }
 
-int		ft_putp(t_flags *flags, va_list param)
+int				ft_putp(t_flags *flags, va_list param)
 {
-	int		i;
-	long	nbr;
-	int		len;
-	char	*base;
+	int			i;
+	long		nbr;
+	int			len;
+	char		*base;
 
 	i = 0;
 	base = "0123456789abcdef";
@@ -58,4 +58,3 @@ int		ft_putp(t_flags *flags, va_list param)
 		i += ft_putnchar(' ', flags->width - len);
 	return (i);
 }
-
