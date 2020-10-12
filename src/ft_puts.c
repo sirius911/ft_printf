@@ -52,17 +52,17 @@ int			ft_puts(t_flags *flags, va_list param)
 	len = ft_strlen(str);
 	if (flags->precision >= 0 && flags->precision < len)
 		len = flags->precision;
-	if (flags->left == 1)
+	if (flags->left)
 	{
 		i += ft_print_s(str, flags, len);
 		i += ft_putnchar(' ', flags->width - len);
 	}
 	else
 	{
-		// if (flags->zero == 0)
+		if (flags->zero)
+			i += ft_putnchar('0', flags->width - len);			
+		else
 			i += ft_putnchar(' ', flags->width - len);
-		// else
-		// 	i += ft_putnchar('0', flags->width - len);
 		i += ft_print_s(str, flags, len);
 	}
 	return (i);

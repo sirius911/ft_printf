@@ -61,7 +61,7 @@ int		main ()
     i = printf("C10 : >%0c<\n", 'a');
     j = ft_printf("C10 : >%0c<\n", 'a');
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
-    exit(0);
+
     printf("\nChar * :\n");
     
     i = printf("S1 : <%s>\n", "test");
@@ -91,7 +91,13 @@ int		main ()
     i = printf("S9 : %*.6s\n", -5, "test");
     j = ft_printf("S9 : %*.6s\n", -5, "test");
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
-    
+    i = printf("S10 : %s\n", NULL);
+    j = ft_printf("S10 : %s\n", NULL);
+    printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
+    i = printf("S11 : %010s\n", NULL);
+    j = ft_printf("S11 : %010s\n", NULL);
+    printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
+    exit(0);
     printf("\nINT (but with %%d) :\n");
     
     i = printf("D0 : <%d>\n", 4);
