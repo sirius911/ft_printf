@@ -218,7 +218,7 @@ int		main ()
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
     
     ft_printf("Essais de nombre en binaire\n");
-    ft_printf("255 => %b\n",255);
+    ft_printf("255 => %.25b\n",255);
 
     printf("\nUnsigned INT :\n");
     

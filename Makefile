@@ -23,7 +23,7 @@ PATH_SLIBFT = ./libft/
 PATH_ILIBFT = ./libft/
 FILESLIBFT = ft_strlen ft_putchar ft_putchar_fd ft_putstr ft_putstr_fd ft_putnchar ft_isdigit ft_strchr ft_isspace \
 			ft_atoi ft_putnbr ft_putnbr_fd ft_itoa ft_strdup ft_strnew ft_bzero ft_strcpy ft_memalloc
-FILESPRINTF = ft_printf ft_flags ft_conversion ft_putc ft_puts ft_putdi ft_putx
+FILESPRINTF = ft_printf ft_flags ft_conversion ft_putc ft_puts ft_putdi ft_putx ft_putu
 
 SLIBFT = $(addprefix $(PATH_SLIBFT), $(addsuffix .c, $(FILESLIBFT)))
 OLIBFT = $(addprefix $(PATH_OLIBFT), $(addsuffix .o, $(FILESLIBFT:.c=.o)))
