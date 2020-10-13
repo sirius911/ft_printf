@@ -21,8 +21,6 @@ int				ft_printf(const char *format, ...)
 
 	va_start(param, format);
 	flags = malloc(sizeof(t_flags));
-	if (!flags)
-		return (-1);
 	written_char = 0;
 	i = 0;
 	while (format[i])
