@@ -81,7 +81,7 @@ int			ft_set_flags(t_flags *flags, const char *format, va_list param)
 
 	i = 1;
 	flags_init(flags);
-	while (ft_isdigit(format[i]) || ft_strchr("-*.", format[i]))
+	while ((ft_isdigit(format[i]) || ft_strchr("-*.", format[i])) && format[i])
 	{
 		if (format[i] == '0' && !flags->left)
 		{

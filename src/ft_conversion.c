@@ -17,10 +17,10 @@ int		ft_print_arg(const char *format, t_flags *flags, va_list param)
 	int			i;
 
 	i = 0;
-	if (*format == '%' && (i = 1))
-		ft_putchar('%');
+	if (*format == '%')
+		i += ft_putc(flags, param, '%');
 	else if (*format == 'c')
-		i += ft_putc(flags, param);
+		i += ft_putc(flags, param, (char)0);
 	else if (*format == 's')
 		i += ft_puts(flags, param);
 	else if (*format == 'd' || *format == 'i')

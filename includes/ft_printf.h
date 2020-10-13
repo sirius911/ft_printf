@@ -32,7 +32,7 @@ int				ft_set_flags(t_flags *flags, const char *format, va_list param);
 int				ft_print_arg(const char *format, t_flags *flags, va_list param);
 int				ft_len_nbr_base(long nbr, char *base);
 int				ft_print_nbr_base(long nbr, char *base);
-int				ft_putc(t_flags *flags, va_list param);
+int				ft_putc(t_flags *flags, va_list param, char c);
 int				ft_puts(t_flags *flags, va_list param);
 int				ft_putdi(t_flags *flags, va_list param);
 int				ft_putu(t_flags *flags, va_list param);

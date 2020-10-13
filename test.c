@@ -26,11 +26,53 @@ int		main ()
     i = 0;
     j = 0;
     i = printf("This is my magnificent test !\n");
-   j = ft_printf("This is my magnificent test !\n");
-    
+    j = ft_printf("This is my magnificent test !\n");
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
     
-   printf("\nChar :\n");
+    printf("00<");
+    i = printf("%%");
+    printf(">\n");
+    printf("sortie = %d\n", i);
+
+
+    printf("01<");
+    printf("%5");
+    printf(">\n");
+
+    printf("02<");
+    printf("%05");
+    printf(">\n");
+
+    printf("03<");
+    printf("%-05");
+    printf(">\n");
+
+    printf("04<");
+    printf("%-5");
+    printf(">\n");
+
+    ft_printf("00<");
+    j = ft_printf("%%");
+    ft_printf(">\n");
+    printf("sortie = %d\n", j);
+
+    ft_printf("01<");
+    ft_printf("%5");
+    ft_printf(">\n");
+
+    ft_printf("02<");
+    ft_printf("%05");
+    ft_printf(">\n");
+
+    ft_printf("03<");
+    ft_printf("%-05");
+    ft_printf(">\n");
+
+    ft_printf("04<");
+    ft_printf("%-5");
+    ft_printf(">\n");
+    
+    ft_printf("\nChar :\n");
     i = printf("C1 : %c\n", 'a');
     j = ft_printf("C1 : %c\n", 'a');
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
@@ -55,8 +97,8 @@ int		main ()
     i = printf("C8 : >%-*c%c<\n", 3, 'a', 'b');
     j = ft_printf("C8 : >%-*c%c<\n", 3, 'a','b');
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
-    i = printf("C9 : >%-*c<%%\n", 3, 'a');
-    j = ft_printf("C9 : >%-*c<%%\n", 3, 'a');
+    i = printf("C9 : >%-*c%%<\n", 3, 'a');
+    j = ft_printf("C9 : >%-*c%%<\n", 3, 'a');
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
     i = printf("C10 : >%0c<\n", 'a');
     j = ft_printf("C10 : >%0c<\n", 'a');
@@ -97,7 +139,7 @@ int		main ()
     i = printf("S11 : %010s\n", NULL);
     j = ft_printf("S11 : %010s\n", NULL);
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
-    exit(0);
+
     printf("\nINT (but with %%d) :\n");
     
     i = printf("D0 : <%d>\n", 4);

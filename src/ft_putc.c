@@ -12,13 +12,13 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_putc(t_flags *flags, va_list param)
+int		ft_putc(t_flags *flags, va_list param, char c)
 {
 	int		i;
-	char	c;
 
 	i = 1;
-	c = (char)va_arg(param, int);
+	if (c != '%')
+		c = (char)va_arg(param, int);
 	if (flags->left == 1)
 	{
 		write(1, &c, 1);
