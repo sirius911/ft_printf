@@ -56,10 +56,13 @@ clean:
 fclean:		clean
 			@rm -f ${NAME}
 			@echo "\033[0mSuppression "${NAME}" ... \033[32mok\033[0m"
-			@rm -f test
+			@rm -f test test2
+			@echo "\033[0mSuppression de test et test2 ... \033[32mok\033[0m"
 			
 re:		fclean	all
 
 test:	test.c	libftprintf.a 
 		${CC} ${HEADER} -O test.c -o test  -L. -lftprintf 
+test2:	test2.c libftprintf.a
+		${CC} ${HEADER} -O test2.c -o test2 -L. -lftprintf
 
