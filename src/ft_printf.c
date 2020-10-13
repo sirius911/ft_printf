@@ -27,22 +27,12 @@ int				ft_printf(const char *format, ...)
 	i = 0;
 	while (format[i])
 	{
-
 		if (format[i] != '%' && (written_char += 1))
 			ft_putchar(format[i]);
 		else
 		{
-			if (format[i + 1] == '%')
-			{
-				ft_putchar('%');
-				i++;
-				written_char++;
-			}
-			else
-			{
-				i += ft_set_flags(flags, &(format[i]), param);
-				written_char += ft_print_arg(&(format[i]), flags, param);
-			}
+			i += ft_set_flags(flags, &(format[i]), param);
+			written_char += ft_print_arg(&(format[i]), flags, param);
 		}
 		if (format[i])
 			i++;
