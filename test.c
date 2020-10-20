@@ -376,4 +376,7 @@ int		main ()
     i = printf("P0 : %0.4o\n", 20);
     j = ft_printf("P0 : %0.4o\n", 20);
     printf("\nprintf : %d,  ft_printf : %d => %s\n\n", i, j, print_result(i,j));
+
+    ft_printf("%d.%d.%d.%d \t= %08b.%08b.%08b.%08b\n",10,0,0,255,10,0,0,255);
+    ft_printf("%d.%d.%d.%d \t= %08b.%08b.%08b.%08b\n",255,255,254,0,255,255,254,0);
 }
