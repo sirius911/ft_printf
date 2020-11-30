@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: how-choongines <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/02 11:13:28 by clorin            #+#    #+#             */
-/*   Updated: 2020/10/02 11:14:35 by clorin           ###   ########.fr       */
+/*   Created: 2020/11/16 19:52:42 by how-choon         #+#    #+#             */
+/*   Updated: 2020/11/18 18:49:09 by how-choon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void		*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	void	*chain;
 
-	if (size <= 0 || count <= 0)
-		return ((void *)NULL);
-	ptr = ft_memalloc(size * count);
-	return (ptr);
+	if (size == 0 || count == 0)
+	{
+		count = 1;
+		size = 1;
+	}
+	chain = malloc(size * count);
+	if (chain == 0)
+		return (0);
+	ft_bzero(chain, (count * size));
+	return (chain);
 }

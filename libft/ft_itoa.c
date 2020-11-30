@@ -3,56 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: how-choongines <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/23 08:24:09 by clorin            #+#    #+#             */
-/*   Updated: 2020/09/23 08:32:20 by clorin           ###   ########.fr       */
+/*   Created: 2020/11/16 19:03:00 by how-choon         #+#    #+#             */
+/*   Updated: 2020/11/19 22:07:47 by how-choon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_nbr(int n)
+static int	ft_checklength(long n)
 {
-	unsigned int	size;
+	int count;
 
-	size = 1;
+	count = 0;
 	if (n < 0)
 	{
-		n = -n;
-		size++;
+		count++;
+		n *= -1;
 	}
-	while (n >= 10)
+	if (n < 10)
+		count++;
+	else
+		count += 1 + ft_checklength(n / 10);
+	return (count);
+}
+
+static void	ft_swap_chain(char *chain, int length)
+{
+	char inter;
+
+	if (length >= 2)
 	{
-		n = n / 10;
-		size++;
+		inter = chain[0];
+		chain[0] = chain[length - 1];
+		chain[length - 1] = inter;
+		ft_swap_chain(&chain[1], length - 2);
 	}
-	return (size);
+}
+
+static void	ft_ope(long n, char *chain)
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
+	{
+		chain[i++] = '-';
+		n *= -1;
+	}
+	if (n < 10)
+	{
+		chain[i++] = n + '0';
+		chain[i] = '\0';
+	}
+	else
+	{
+		chain[i++] = (n % 10) + '0';
+		ft_ope(n / 10, &chain[i]);
+	}
 }
 
 char		*ft_itoa(int n)
 {
-	char	*str;
-	int		size;
-	int		i;
+	long	n2;
+	long	length;
+	char	*chain;
 
-	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	size = ft_len_nbr(n);
-	str = ft_strnew(size);
-	if (!str)
-		return (NULL);
-	if (n < 0)
-	{
-		n = -n;
-		str[i++] = '-';
-	}
-	while (size > i)
-	{
-		size--;
-		str[size] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (str);
+	n2 = (long)n;
+	length = ft_checklength(n2);
+	chain = (char *)malloc(sizeof(char) * (length + 1));
+	if (chain == 0)
+		return (0);
+	ft_ope(n2, chain);
+	if (n2 > 0)
+		ft_swap_chain(chain, length);
+	else
+		ft_swap_chain(&chain[1], length - 1);
+	return (chain);
 }

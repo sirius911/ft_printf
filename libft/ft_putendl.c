@@ -6,13 +6,13 @@
 /*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:18:45 by clorin            #+#    #+#             */
-/*   Updated: 2020/09/23 09:20:12 by clorin           ###   ########.fr       */
+/*   Updated: 2020/11/30 19:01:02 by clorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_putendl(char const *s)
+void		ft_putendl(char *s)
 {
 	ft_putendl_fd(s, 1);
 }
