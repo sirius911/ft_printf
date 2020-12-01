@@ -3,120 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: how-choongines <marvin@42.fr>              +#+  +:+       +#+        */
+/*   By: clorin <clorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 16:53:40 by how-choon         #+#    #+#             */
-/*   Updated: 2020/11/25 13:51:07 by how-choon        ###   ########.fr       */
+/*   Created: 2020/09/22 15:24:16 by clorin            #+#    #+#             */
+/*   Updated: 2020/09/22 15:50:15 by clorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*find_chain(char *str, int *size, char c)
+static char		*ft_strndup_split(const char *s, size_t n)
 {
-	int		i;
-	int		flag;
+	char		*str;
+	size_t		i;
 
 	i = 0;
-	flag = 0;
-	while (flag != 1)
+	str = (char *)malloc(sizeof(char) * n + 1);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, n + 1);
+	while (s[i] && i < n)
 	{
-		while ((str[i] != '\0') && c != str[i])
-			i++;
-		if (i > 0)
-			flag = 1;
-		else
-		{
-			str++;
-			i = 0;
-		}
+		str[i] = s[i];
+		i++;
 	}
-	*size = i;
 	return (str);
 }
 
-static int	count_lines(char *str, char c)
+static int		nb_word(char const *str, char c)
 {
-	int i;
-	int count;
+	size_t		i;
+	int			cmpt;
 
-	count = 0;
-	while (*str != '\0')
+	i = 0;
+	cmpt = 0;
+	while (str[i])
 	{
-		i = 0;
-		while (*str && c == *str)
-			str++;
-		while (str[i] && c != str[i])
+		while (str[i] == c)
 			i++;
-		if (i)
-			count++;
-		str = str + i;
-	}
-	return (count);
-}
-
-static char	*copy(char *str, int size)
-{
-	int		i;
-	char	*chain;
-
-	i = 0;
-	if (size == -1)
-	{
-		while (str[i] != '\0')
+		if (str[i])
+			cmpt++;
+		while (str[i] && str[i] != c)
 			i++;
-		size = i;
 	}
-	if (!(chain = (char*)malloc(sizeof(char) * (size + 1))))
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		chain[i] = *str;
-		str++;
-		i++;
-	}
-	chain[i] = '\0';
-	return (chain);
+	return (cmpt);
 }
 
-static char	**ft_check(char *str, char c, int *lines)
+static void		free_split(char **dest, int y)
 {
-	char	**tab;
-
-	if (str == NULL)
-		return (NULL);
-	*lines = count_lines(str, c);
-	tab = (char**)malloc(sizeof(char*) * (*lines + 1));
-	if (tab == 0)
-		return (0);
-	return (tab);
+	while (y >= 0)
+	{
+		free(dest[y]);
+		y--;
+	}
+	free(dest);
 }
 
-char		**ft_split(const char *s, char c)
+static char		**ft_fill_words(char **dest, char const *s, char c)
 {
-	char	**tab;
-	int		i;
-	int		lines;
-	int		size_chain;
-	char	*str;
+	int			i;
+	int			y;
+	int			j;
 
 	i = 0;
-	str = (char*)s;
-	tab = ft_check(str, c, &lines);
-	if (tab == NULL)
-		return (NULL);
-	while (i < lines)
+	y = 0;
+	while (s[i])
 	{
-		str = find_chain(str, &size_chain, c);
-		tab[i] = copy(str, size_chain);
-		while (size_chain > 0)
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[i] && s[i] != c)
+			i++;
+		if (i > j)
 		{
-			size_chain--;
-			str++;
+			dest[y++] = ft_strndup_split(s + j, i - j);
+			if (!dest[y - 1])
+			{
+				free_split(dest, y - 2);
+				return (NULL);
+			}
 		}
-		i++;
 	}
-	tab[i] = 0;
-	return (&tab[0]);
+	dest[y] = NULL;
+	return (dest);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	char		**dest;
+
+	if (!s)
+		return (NULL);
+	dest = (char **)malloc(sizeof(char *) * (nb_word(s, c) + 1));
+	if (!dest)
+		return (NULL);
+	return (ft_fill_words(dest, s, c));
 }
